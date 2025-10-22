@@ -15,15 +15,18 @@ function Book(title, author, pages, read_status) {
         } else {
             message = "not read yet";
         }
-        return this.title + " by " + this.author + ", " + this.pages + " pages, " + message + "."
+        return this.title + " by " + this.author + ", " + 
+        this.pages + " pages, " + message + ".";
   };
     this.id = crypto.randomUUID()
 
 }
 
-function addBookToLibrary(title, author, pages, read_status) {
+function addBookToLibrary(title, author, pages, read_status, bookArr) {
   // take params, create a book then store it in the array
-
+    let newBook = new Book(title, author, pages, read_status);
+    bookArr.push(newBook);
+    return bookArr;
 }
 
 
@@ -32,8 +35,13 @@ function addBookToLibrary(title, author, pages, read_status) {
 
 
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien',
-    295, false
-)
+const andThen = addBookToLibrary('And Then There Were None', 
+    'Agatha Christie',
+    272, true, myLibrary)
 
-console.log(theHobbit.info())
+const darkPlaces = addBookToLibrary('Dark Places', 
+    'Gillian Flynn',
+    349, true, myLibrary)
+
+
+console.log(myLibrary)
