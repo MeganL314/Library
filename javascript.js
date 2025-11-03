@@ -43,16 +43,15 @@ const Circe = addBookToLibrary('Circe',
     'Madeline Miller', 393, true, myLibrary)
 
 console.log(myLibrary)
-
+console.log(myLibrary.length)
 
 
 // Create a grid of 'cards' displaying each book
 
 function createGrid(size) {
 
-  const container = document.querySelector("#container");
-  
-  // create a 16x16 square of divs
+  const container = document.querySelector("#card-container");
+  // create a square of divs
   const widthHeight = 800 / size + "px";
 
   for (let i=1; i<=size; i++ ){
@@ -68,17 +67,10 @@ function createGrid(size) {
       container.appendChild(row);
   }
 
-  const myGrid = document.querySelectorAll('.grid');
-
-  myGrid.forEach((square) => {
-    // and for each one we add a 'click' listener
-    square.addEventListener("mouseenter", () => {
-      square.style.backgroundColor = 'lightblue';
-    });
-  });
-
 }
 
-
+const sqr_root = Math.sqrt(myLibrary.length);
+const round_sqrt = Math.ceil(sqr_root);
+createGrid(round_sqrt)
 
 
