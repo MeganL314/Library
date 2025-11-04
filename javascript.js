@@ -1,4 +1,15 @@
 const myLibrary = []
+const button = document.querySelector("#new_book_button");
+
+
+button.addEventListener("click", () => {
+
+  //Make a form for all of this information
+  const n_title = prompt("Title:");
+  const n_author = prompt("Author:");
+
+});
+
 
 function Book(title, author, pages, read_status) {
     // the constructor.. 

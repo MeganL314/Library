@@ -21,3 +21,17 @@
     border: 1px solid green;
     background-color: pink;
 }
+
+.title_top {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    border-top: 30px;
+    font-size: 26px;
+}
+
+#dialogue_buttons {
+    display: flex;
+    justify-content: center; 
+    margin: 30px;   
+}
