@@ -108,6 +108,8 @@ function add_books(myLibrary) {
     
     const statusButton = document.createElement('button');
     statusButton.classList.add("status_button");
+    statusButton.id = myLibrary[i].id;
+
 
     if (myLibrary[i].read_status == 'Read') {
       statusButton.textContent = 'Mark as unread';
@@ -119,7 +121,7 @@ function add_books(myLibrary) {
 
     const deleteButton = document.createElement('button');
     deleteButton.classList.add("delete_button");
-    deleteButton.classList.add(myLibrary[i].id);
+    deleteButton.id = myLibrary[i].id;
     deleteButton.textContent = 'Delete';
     buttonContainer.appendChild(deleteButton);
 
@@ -139,24 +141,34 @@ add_books(myLibrary)
 
 
 // Mark unread if the statusBetton is pushed - prototype function??
-    statusButton.addEventListener('click', function(){
-      if (statusButton.textContent == 'Mark as unread'){
-        myLibrary[i].read_status = 'Unread';
-        statusButton.textContent = 'Mark as read';
-      }
-      else{
-        myLibrary[i].read_status = 'Read';
-        statusButton.textContent = 'Mark as unread';
-      }
+Book.prototype.changeStatus = function() {
+  if (this.read_status == 'Unread'){
+    this.read_status = 'Read';
+  }
+  else {
+    this.read_status = 'Unread';
+  }
+}
+
+
+function changeButton(){
+    const myGrid = document.querySelectorAll('.square');
+    myGrid.addEventListener('click', function(event){
+      if (event.target.classList.contain('status_button')){
+        // get the index from the clicked element - ID??
+        if (statusButton.textContent == 'Mark as unread'){
+          // Call Book.changeStatus
+          statusButton.textContent = 'Mark as read';
+        }
+        else{
+          // Call Book.changeStatus
+          statusButton.textContent = 'Mark as unread';
+        }
+        }
       
     });
-
-
-
-
-
-
-
+    // Also call add_books(myLibrary) again
+  }
 
 
 
