@@ -50,8 +50,8 @@ const darkPlaces = addBookToLibrary('Dark Places',
 const readyPlayer = addBookToLibrary('Ready Player One', 
     'Ernest Cline', 480, 'Read', myLibrary)
 
-const Circe = addBookToLibrary('Circe', 
-    'Madeline Miller', 393, 'Read', myLibrary)
+//const Circe = addBookToLibrary('Circe', 
+//    'Madeline Miller', 393, 'Read', myLibrary)
 
 console.log(myLibrary)
 console.log(myLibrary.length)
@@ -63,7 +63,7 @@ function createGrid(size) {
 
   const container = document.querySelector("#card-container");
   // create a square of divs
-  const widthHeight = 800 / size + "px";
+  const widthHeight = 600 / size + "px";
 
   for (let i=1; i<=size; i++ ){
       const row = document.createElement("div");
@@ -93,21 +93,77 @@ function add_books(myLibrary) {
     console.log(myLibrary[i].title)
 
      const bookHTML = `
-        <div class="title">Title: "${myLibrary[i].title}" </div>
+        <div class="title">${myLibrary[i].title} </div>
         <div class="author">Author: ${myLibrary[i].author} </div>
         <div class="pages">Pages: ${myLibrary[i].pages} </div>
         <div class="status">Status: ${myLibrary[i].read_status} </div>
-        <button class="read_status">Mark as read </button>
-        <button class="delete">Delete </button>
         `;
+        
+    // Add button to 'Mark as read/unread' and 'Delete'
 
     myGrid[i].innerHTML = bookHTML;
-    }
 
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
+    
+    const statusButton = document.createElement('button');
+    statusButton.classList.add("status_button");
+
+    if (myLibrary[i].read_status == 'Read') {
+      statusButton.textContent = 'Mark as unread';
+    }
+    else{
+      statusButton.textContent = 'Mark as read';
+    }
+    buttonContainer.appendChild(statusButton);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add("delete_button");
+    deleteButton.classList.add(myLibrary[i].id);
+    deleteButton.textContent = 'Delete';
+    buttonContainer.appendChild(deleteButton);
+
+    myGrid[i].appendChild(buttonContainer);
+
+    myGrid[i].style.backgroundColor = "pink";
+  }
 }
 
 const sqr_root = Math.sqrt(myLibrary.length);
 const round_sqrt = Math.ceil(sqr_root);
 createGrid(round_sqrt)
 add_books(myLibrary)
+
+
+// Remove from myLibrary if the deleteButton is pushed
+
+
+// Mark unread if the statusBetton is pushed - prototype function??
+    statusButton.addEventListener('click', function(){
+      if (statusButton.textContent == 'Mark as unread'){
+        myLibrary[i].read_status = 'Unread';
+        statusButton.textContent = 'Mark as read';
+      }
+      else{
+        myLibrary[i].read_status = 'Read';
+        statusButton.textContent = 'Mark as unread';
+      }
+      
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
