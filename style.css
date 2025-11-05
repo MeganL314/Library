@@ -3,24 +3,11 @@
   padding: 0;
 }
 
-#card-container {
+.header{
     display: flex;
-    justify-content: center;
-    width: 800px;
-    height: 800px;
-    margin: auto;
-    border: 1px solid black;
 }
 
-#card-container > .row {
-    border: 1px solid green;
-    background-color: pink;
-}
 
-#card-container > .row > .grid {
-    border: 1px solid green;
-    background-color: pink;
-}
 
 .title_top {
     display: flex;
@@ -30,8 +17,32 @@
     font-size: 26px;
 }
 
+#card-container {
+    display: flex;
+    justify-content: center;
+    width: 800px;
+    height: 800px;
+    margin: auto;
+    border: 1px solid black;
+}
+
+#card-container > .column {
+    border: 1px solid green;
+    background-color: pink;
+}
+
+#card-container > .column > .square {
+    border: 1px solid green;
+    background-color: pink;
+    text-align: center;
+}
+
 #dialogue_buttons {
     display: flex;
     justify-content: center; 
     margin: 30px;   
+}
+
+.title{
+    font-size: 20px;
 }
