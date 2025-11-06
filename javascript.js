@@ -133,8 +133,8 @@ function add_books(myLibrary) {
 
 const sqr_root = Math.sqrt(myLibrary.length);
 const round_sqrt = Math.ceil(sqr_root);
-createGrid(round_sqrt)
-add_books(myLibrary)
+createGrid(round_sqrt);
+add_books(myLibrary);
 
 
 // Remove from myLibrary if the deleteButton is pushed
@@ -152,25 +152,27 @@ Book.prototype.changeStatus = function() {
 
 
 function changeButton(){
-    const myGrid = document.querySelectorAll('.square');
-    myGrid.addEventListener('click', function(event){
-      if (event.target.classList.contain('status_button')){
+    const container = document.querySelector("#card-container");
+    container.addEventListener('click', function(event){
+      console.log("A click occurred somewhere in the container."); 
+      if (event.target.classList.contains("status_button")){
         // get the index from the clicked element - ID??
-        if (statusButton.textContent == 'Mark as unread'){
-          // Call Book.changeStatus
-          statusButton.textContent = 'Mark as read';
+        const ID = event.target.id;
+        console.log(ID)
+
+        // Call Book.changeStatus according to ID
+        // I need to find the book with ID as Book.id
+        const bookTarget = myLibrary.find(book => book.id == ID);
+        console.log(bookTarget.title);
+        bookTarget.changeStatus();
+        add_books(myLibrary)
         }
-        else{
-          // Call Book.changeStatus
-          statusButton.textContent = 'Mark as unread';
-        }
-        }
-      
     });
     // Also call add_books(myLibrary) again
+    ;
   }
 
-
+changeButton(); 
 
 
 
