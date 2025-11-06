@@ -1,4 +1,4 @@
-const myLibrary = []
+let myLibrary = []
 const button = document.querySelector("#new_book_button");
 
 
@@ -138,6 +138,27 @@ add_books(myLibrary);
 
 
 // Remove from myLibrary if the deleteButton is pushed
+function deleteButton(){
+    const container = document.querySelector("#card-container");
+    container.addEventListener('click', function(event){
+      
+      if (event.target.classList.contains("delete_button")){
+        console.log("DELETE BUTTON CLICK")
+        // get the index from the clicked element - ID??
+        const ID = event.target.id;
+        
+        console.log(myLibrary.length);
+        console.log(ID);
+        // remove bookTarget from
+        myLibrary = myLibrary.filter(book => book.id != ID);
+        console.log(myLibrary.length);
+        console.log('Test');
+        add_books(myLibrary);
+        }
+    });
+    // Also call add_books(myLibrary) again
+    ;
+  }
 
 
 // Mark unread if the statusBetton is pushed - prototype function??
@@ -154,8 +175,8 @@ Book.prototype.changeStatus = function() {
 function changeButton(){
     const container = document.querySelector("#card-container");
     container.addEventListener('click', function(event){
-      console.log("A click occurred somewhere in the container."); 
       if (event.target.classList.contains("status_button")){
+        console.log("STATUS BUTTON CLICK")
         // get the index from the clicked element - ID??
         const ID = event.target.id;
         console.log(ID)
@@ -163,9 +184,8 @@ function changeButton(){
         // Call Book.changeStatus according to ID
         // I need to find the book with ID as Book.id
         const bookTarget = myLibrary.find(book => book.id == ID);
-        console.log(bookTarget.title);
         bookTarget.changeStatus();
-        add_books(myLibrary)
+        add_books(myLibrary);
         }
     });
     // Also call add_books(myLibrary) again
@@ -173,7 +193,7 @@ function changeButton(){
   }
 
 changeButton(); 
-
+deleteButton();
 
 
 
